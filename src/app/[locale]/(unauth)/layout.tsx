@@ -53,44 +53,57 @@ export default function RootLayout({
   const [isFaqPage, setIsFaqPage] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
   useEffect(() => {
-    if (!window.Promise) {
+    // Only set Promise polyfill if window is defined
+    if (typeof window !== 'undefined' && !window.Promise) {
       window.Promise = Promise;
     }
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // eslint-disable-next-line no-console
-        console.log(mutation);
-      });
-    });
 
-    const targetNode = document.getElementById('some-element');
-    if (targetNode) {
-      observer.observe(targetNode, {
-        attributes: true,
-        childList: true,
-        subtree: true,
+    // Only set MutationObserver if document is available
+    if (typeof document !== 'undefined') {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          // eslint-disable-next-line no-console
+          console.log(mutation);
+        });
       });
+
+      const targetNode = document.getElementById('some-element');
+      if (targetNode) {
+        observer.observe(targetNode, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
+
+      // Return cleanup function to disconnect observer when component unmounts
+      return () => observer.disconnect();
     }
 
-    return () => observer.disconnect();
+    // Explicitly return undefined if MutationObserver is not created
+    return undefined;
   }, []);
 
-  const isAuthPage
-    = pathname === '/auth/login' || pathname === '/auth/register';
+  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/register';
   const isCustomerStoriesPage = pathname === '/customer-stories';
   const isRedirectPage = pathname === '/redirect';
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
+    // Only access localStorage on the client side
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('access_token');
 
-    if (token && isAuthPage) {
-      router.push('/');
+      if (token && isAuthPage) {
+        router.push('/');
+      }
     }
   }, [isAuthPage, router]);
 
   useEffect(() => {
-    if (pathname === '/faq' || pathname.startsWith('/articles/')) {
+    // Use pathname only on the client side
+    if (typeof window !== 'undefined' && (pathname === '/faq' || pathname.startsWith('/articles/'))) {
       setIsFaqPage(true);
     } else {
       setIsFaqPage(false);
