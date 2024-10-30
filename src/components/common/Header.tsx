@@ -227,7 +227,7 @@ export default function Header() {
         </div>
       </div>
       <div
-        className={`origin-top overflow-hidden bg-[#070b18] transition-all duration-300 ease-in-out lg:hidden${
+        className={`origin-top overflow-hidden bg-[#070b18] transition-all duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen
             ? 'max-h-screen scale-y-100 opacity-100'
             : 'max-h-0 scale-y-0 opacity-0'
