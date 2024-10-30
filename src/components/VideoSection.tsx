@@ -49,7 +49,12 @@ function VideoModal({
           autoPlay
         >
           <source src="./video.mp4" />
-          <track default kind="captions" srcLang="en" src="./captions.vtt" />
+          <track
+            default
+            kind="captions"
+            srcLang="en"
+            src="./captions.vtt"
+          />
           {' '}
           {/* Added track for captions */}
         </video>

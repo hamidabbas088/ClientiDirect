@@ -22,6 +22,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:serve": "http-server storybook-static --port 6006 --silent",
+    "debug": "prettier --write \"**/*.{ts,tsx,md}\" && prettier --check \"**/*.{js,jsx,ts,tsx}\" && next lint && next build",
     "serve-storybook": "run-s storybook:*",
     "test-storybook:ci": "start-server-and-test serve-storybook http://127.0.0.1:6006 test-storybook",
     "prepare": "husky"
@@ -99,6 +100,7 @@
     "dotenv-cli": "^7.4.2",
     "drizzle-kit": "^0.26.2",
     "eslint": "^8.57.1",
+    "eslint-config-next": "15.0.2",
     "eslint-plugin-format": "^0.1.2",
     "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
