@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -31,7 +32,7 @@ export default function Panel() {
             prin identificarea și captarea lor primul.
           </p>
 
-          <a
+          <Link
             href="/auth/register"
             className="inline-flex items-center justify-center rounded-full bg-black px-7 py-[15px] font-semibold text-white hover:bg-gray-900"
           >
@@ -41,7 +42,7 @@ export default function Panel() {
             <div>
               <Image src={arrow} alt="footer button arrow" className="ml-3" />
             </div>
-          </a>
+          </Link>
         </div>
 
         <div

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import Arrow from '@/assets/svgs/arrow.svg';
@@ -104,13 +105,13 @@ const CaseStudyList = () => {
               <p className="mb-[24px] text-[16px] leading-[28px] text-[#667085]">
                 {caseStudy.description}
               </p>
-              <a
+              <Link
                 href={caseStudy.link}
                 className="learn-more-button flex size-fit items-end gap-2 rounded-full border border-[#00000026] bg-[#101828] px-[16px] py-[10px] text-[14px] leading-[20px] text-white"
               >
                 <p className="self-end">Află mai multe</p>
                 <Image src={Arrow} alt="Arrow" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>

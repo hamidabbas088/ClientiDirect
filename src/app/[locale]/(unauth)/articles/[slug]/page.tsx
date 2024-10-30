@@ -114,7 +114,7 @@ export default async function ArticlePage({ params }: Props) {
 
         <div className="mt-5 rounded-lg border border-[#E6E6E6] px-3 py-4">
           {articles.slice(0, 5).map(article => (
-            <a key={article.slug} href={`/articles/${article.slug}`}>
+            <Link key={article.slug} href={`/articles/${article.slug}`}>
               <div
                 className="faq-item article-section group flex cursor-pointer items-center justify-between rounded-md p-3 transition-all duration-300"
                 key={article.slug}
@@ -136,7 +136,7 @@ export default async function ArticlePage({ params }: Props) {
                   />
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 

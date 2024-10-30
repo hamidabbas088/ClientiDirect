@@ -2,9 +2,10 @@
 import 'react-toastify/dist/ReactToastify.css'; // Import styles
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { Suspense, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify'; // Import toastify
+import { toast, ToastContainer } from 'react-toastify';
 
 import Google from '@/assets/images/google.webp';
 import ClientiDirect from '@/assets/images/logo-icon.png';
@@ -251,12 +252,12 @@ function LoginContent() {
         <p className="py-8 text-center text-sm text-[#020817]">
           Nu ai un cont încă?
           {' '}
-          <a
+          <Link
             href="/auth/register"
             className="text-blue-600 hover:text-blue-500"
           >
             Începe proba gratuită de 14 zile
-          </a>
+          </Link>
         </p>
       </form>
     </div>

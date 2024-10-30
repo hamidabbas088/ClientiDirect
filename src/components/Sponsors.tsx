@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Sponsors = () => (
   <table className="border-collapse">
     <tbody>
       <tr className="h-56">
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate"
             target="_blank"
             rel="noreferrer noopener"
@@ -16,10 +17,10 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://l.crowdin.com/next-js"
             target="_blank"
             rel="noreferrer noopener"
@@ -30,10 +31,10 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://sentry.io/for/nextjs/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy25q1-nextjs&utm_content=github-banner-nextjsboilerplate-logo"
             target="_blank"
             rel="noreferrer noopener"
@@ -44,12 +45,12 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
       </tr>
       <tr className="h-56">
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://posthog.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate"
             target="_blank"
             rel="noreferrer noopener"
@@ -60,10 +61,10 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://betterstack.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate"
             target="_blank"
             rel="noreferrer noopener"
@@ -74,10 +75,10 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
         <td className="border-2 border-gray-300 p-3">
-          <a
+          <Link
             href="https://www.checklyhq.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate"
             target="_blank"
             rel="noreferrer noopener"
@@ -88,19 +89,19 @@ export const Sponsors = () => (
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
       </tr>
       <tr className="h-56">
         <td className="border-2 border-gray-300 p-3">
-          <a href="https://nextjs-boilerplate.com/pro-saas-starter-kit">
+          <Link href="https://nextjs-boilerplate.com/pro-saas-starter-kit">
             <Image
               src="/assets/images/nextjs-boilerplate-saas.png"
               alt="Next.js SaaS Boilerplate"
               width={260}
               height={224}
             />
-          </a>
+          </Link>
         </td>
       </tr>
     </tbody>

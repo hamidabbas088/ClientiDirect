@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import AquaTick from '../../assets/svgs/aqua-tick.svg';
@@ -47,7 +48,7 @@ const CallToActionSection = () => {
               <Image src={MessageIcon} alt="Message Icon" />
               <p>Vorbește cu vânzări</p>
             </button>
-            <a
+            <Link
               href="/auth/login"
               className="faq-chat-button backdrop-filter-[8px] flex h-fit items-center justify-center gap-2 rounded-full border border-[#0000] bg-[#ffffff1a] px-[20px] py-[12px] text-[14px] text-white max-[474px]:py-2"
             >
@@ -69,7 +70,7 @@ const CallToActionSection = () => {
                   />
                 </svg>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -200,9 +200,9 @@ export default function Header() {
               )}
             </li>
             <li>
-              <a href="/pricing" className="font-bold hover:text-gray-300">
+              <Link href="/pricing" className="font-bold hover:text-gray-300">
                 Prețuri
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -296,13 +296,13 @@ export default function Header() {
             )}
           </li>
           <li>
-            <a
+            <Link
               href="/pricing"
               className="block font-medium"
               onClick={handleMenuItemClick}
             >
               Prețuri
-            </a>
+            </Link>
           </li>
           <li className="mt-4 flex items-center gap-4 pt-4">
             <Link href="/auth/register" onClick={handleMenuItemClick}>

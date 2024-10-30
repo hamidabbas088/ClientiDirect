@@ -4,6 +4,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import Avatar from '@/assets/images/avatar.jpg';
@@ -65,7 +66,7 @@ const FAQ: React.FC = () => {
 
         <div className="mt-10 rounded-lg border border-[#E6E6E6] px-3 py-4 max-sm:pl-5">
           {articles.map(article => (
-            <a key={article.slug} href={`/articles/${article.slug}`}>
+            <Link key={article.slug} href={`/articles/${article.slug}`}>
               <div
                 className="faq-item article-section group flex cursor-pointer items-center justify-between rounded-md transition-all duration-300 sm:p-3"
                 key={article.slug}
@@ -87,7 +88,7 @@ const FAQ: React.FC = () => {
                   />
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

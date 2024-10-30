@@ -2,6 +2,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
@@ -385,9 +386,9 @@ function SignupForm() {
         <p className="py-8 text-center text-sm text-[#020817]">
           Ai deja un cont?
           {' '}
-          <a href="/auth/login" className="text-blue-600 hover:text-blue-500">
+          <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
             Autentificare
-          </a>
+          </Link>
         </p>
       </form>
     </div>

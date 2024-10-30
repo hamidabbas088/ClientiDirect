@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import LogoIcon from '../../assets/images/logo-icon.png';
@@ -12,11 +13,11 @@ export default function FaqFooter() {
       style={{ fontFamily: 'system-ui' }}
     >
       <div>
-        <a href="/faq">
+        <Link href="/faq">
           <div className="flex cursor-pointer justify-center">
             <Image src={LogoIcon} alt="Logo Icon" width={32} height={32} />
           </div>
-        </a>
+        </Link>
         <div className="mb-4 mt-10 flex items-center gap-4">
           <p className="cursor-pointer text-sm font-normal text-[#929BA5]">
             Sign in

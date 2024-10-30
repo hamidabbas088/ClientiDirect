@@ -1,4 +1,5 @@
 import { currentUser } from '@clerk/nextjs/server';
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 export const Hello = async () => {
@@ -13,12 +14,12 @@ export const Hello = async () => {
       </p>
       <p>
         {`Looking for a SaaS Boilerplate? `}
-        <a
+        <Link
           className="text-blue-700 hover:border-b-2 hover:border-blue-700"
           href="https://nextjs-boilerplate.com/pro-saas-starter-kit"
         >
           Next.js Boilerplate SaaS
-        </a>
+        </Link>
         {` can help you build one.`}
       </p>
     </>

@@ -19,9 +19,9 @@ export default function page() {
           <p className="pt-6 text-xl">
             Ne bucurăm că te-ai alăturat
             {' '}
-            <a className="text-blue-800" href="/">
+            <Link className="text-blue-800" href="/">
               ClientiDirect.com !
-            </a>
+            </Link>
             {' '}
             Solicitarea ta a fost înregistrată cu succes și ești acum pe lista
             noastră de așteptare. Stai aproape – unul dintre colegii noștri te
