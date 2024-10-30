@@ -75,6 +75,9 @@ export default function RootLayout({
 
     return () => observer.disconnect();
   }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') { /* empty */ }
+  }, []);
 
   const isAuthPage
     = pathname === '/auth/login' || pathname === '/auth/register';
