@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><script xmlns="" src="chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js"/>
+<g clip-path="url(#clip0_202_17819)">
+<path d="M15.0003 8.33342L12.1384 11.1953C11.9734 11.3604 11.8909 11.4429 11.7957 11.4738C11.7121 11.501 11.6219 11.501 11.5382 11.4738C11.4431 11.4429 11.3606 11.3604 11.1956 11.1953L8.80506 8.80482C8.64006 8.63981 8.55755 8.55731 8.46242 8.5264C8.37873 8.49921 8.28859 8.49921 8.2049 8.5264C8.10977 8.55731 8.02726 8.63981 7.86225 8.80482L5.00033 11.6667M18.3337 10.0001C18.3337 14.6025 14.6027 18.3334 10.0003 18.3334C5.39795 18.3334 1.66699 14.6025 1.66699 10.0001C1.66699 5.39771 5.39795 1.66675 10.0003 1.66675C14.6027 1.66675 18.3337 5.39771 18.3337 10.0001Z" stroke="black" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_202_17819">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs><script xmlns="" type="module" src="chrome-extension://ocolkjnalnkdaclepjmkigefcgngkadb/assets/detector.d8bf3127.js"/>
+</svg>

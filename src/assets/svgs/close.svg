@@ -1,0 +1,4 @@
+<svg class="absolute inset-y-0 end-0 top-3 cursor-pointer pe-4 group-focus:outline" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 16 16" aria-label="Clear search query">
+	<path d="M8.018 6.643L5.375 4 4 5.375l2.643 2.643L4 10.643 5.375 12l2.643-2.625L10.625 12 12 10.643 9.357 8.018 12 5.375 10.643 4z">
+	</path>
+</svg>

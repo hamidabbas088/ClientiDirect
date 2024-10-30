@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="721" height="475" viewBox="0 0 721 475" fill="none"><script xmlns="" src="chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js"/>
+<g clip-path="url(#clip0_119_99818)" filter="url(#filter0_f_119_99818)">
+<path d="M288.462 318.735C308.337 331.061 308.337 351.299 288.462 363.625L-51.657 574.584C-71.5319 586.91 -104.047 586.91 -124.005 574.584L-464.041 363.625C-483.916 351.299 -483.916 331.061 -464.041 318.735L-87.8311 85.2888L288.379 318.735H288.462Z" fill="url(#paint0_linear_119_99818)"/>
+<path d="M288.462 143.255C308.337 155.581 308.337 175.819 288.462 188.145L-51.657 399.104C-71.5319 411.43 -104.047 411.43 -124.005 399.104L-464.041 188.145C-483.916 175.819 -483.916 155.581 -464.041 143.255L-87.8311 -90.1913L288.379 143.255H288.462Z" fill="url(#paint1_linear_119_99818)" fill-opacity="0.5"/>
+<path d="M168.88 -203.292C297.527 -123.505 297.527 7.08468 168.88 86.8711L-51.5738 223.624C-71.4487 235.95 -103.964 235.95 -123.922 223.624L-464.041 12.6647C-483.916 0.338633 -483.916 -19.8995 -464.041 -32.2255L-188.204 -203.292C-89.9931 -264.172 70.6696 -264.172 168.88 -203.292Z" fill="url(#paint2_linear_119_99818)" fill-opacity="0.5"/>
+</g>
+<defs>
+<filter id="filter0_f_119_99818" x="-959.46" y="-687.758" width="1742.92" height="1742.92" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="31.5" result="effect1_foregroundBlur_119_99818"/>
+</filter>
+<linearGradient id="paint0_linear_119_99818" x1="-193.858" y1="508.706" x2="10.486" y2="187.008" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2F6AEB"/>
+<stop offset="1" stop-color="#2727C7"/>
+</linearGradient>
+<linearGradient id="paint1_linear_119_99818" x1="-200.761" y1="355.13" x2="16.6836" y2="-8.4503" gradientUnits="userSpaceOnUse">
+<stop stop-color="#41A7F0"/>
+<stop offset="1" stop-color="#1B61D1"/>
+</linearGradient>
+<linearGradient id="paint2_linear_119_99818" x1="-176.977" y1="166.741" x2="-19.7224" y2="-259.771" gradientUnits="userSpaceOnUse">
+<stop stop-color="#54EDF0"/>
+<stop offset="1" stop-color="#30A9D9"/>
+</linearGradient>
+<clipPath id="clip0_119_99818">
+<rect width="1143.34" height="1143.34" fill="white" transform="translate(-88 -624.758) rotate(45)"/>
+</clipPath>
+</defs><script xmlns="" type="module" src="chrome-extension://ocolkjnalnkdaclepjmkigefcgngkadb/assets/detector.d8bf3127.js"/>
+</svg>

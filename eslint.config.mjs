@@ -33,6 +33,7 @@ export default antfu({
   rules: {
     ...nextPlugin.configs.recommended.rules,
     ...nextPlugin.configs['core-web-vitals'].rules,
+    'jsx-a11y/click-events-have-key-events': 'off', // Disable only keyboard event listener rule
   },
 }, {
   plugins: {

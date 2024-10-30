@@ -1,94 +1,163 @@
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+/* eslint-disable react-dom/no-dangerously-set-innerhtml */
+'use client';
+import 'intersection-observer';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import 'mutationobserver-shim';
+import 'react-toastify/dist/ReactToastify.css';
+import '../../../styles/globals.css';
 
-import { DemoBanner } from '@/components/DemoBanner';
-import { LocaleSwitcher } from '@/components/LocaleSwitcher';
-import { BaseTemplate } from '@/templates/BaseTemplate';
+import localFont from 'next/font/local';
+import { usePathname, useRouter } from 'next/navigation';
+import Script from 'next/script';
+import Promise from 'promise-polyfill';
+import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 
-export default function Layout(props: {
+import FaqFooter from '@/components/common/FaqFooter';
+import FaqHeader from '@/components/common/FaqHeader';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
+
+const soleil = localFont({
+  src: [
+    {
+      path: '../../../assets/fonts/SoleilBold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../../assets/fonts/SoleilBook.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../../assets/fonts/SoleilLight.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../../assets/fonts/SoleilRegular.otf',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-soleil',
+});
+
+export default function RootLayout({
+  children,
+}: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
-}) {
-  unstable_setRequestLocale(props.params.locale);
-  const t = useTranslations('RootLayout');
+}>) {
+  const [isFaqPage, setIsFaqPage] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  useEffect(() => {
+    if (!window.Promise) {
+      window.Promise = Promise;
+    }
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        // eslint-disable-next-line no-console
+        console.log(mutation);
+      });
+    });
+
+    const targetNode = document.getElementById('some-element');
+    if (targetNode) {
+      observer.observe(targetNode, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const isAuthPage
+    = pathname === '/auth/login' || pathname === '/auth/register';
+  const isCustomerStoriesPage = pathname === '/customer-stories';
+  const isRedirectPage = pathname === '/redirect';
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+
+    if (token && isAuthPage) {
+      router.push('/');
+    }
+  }, [isAuthPage, router]);
+
+  useEffect(() => {
+    if (pathname === '/faq' || pathname.startsWith('/articles/')) {
+      setIsFaqPage(true);
+    } else {
+      setIsFaqPage(false);
+    }
+  }, [pathname]);
 
   return (
-    <>
-      <DemoBanner />
-      <BaseTemplate
-        leftNav={(
-          <>
-            <li>
-              <Link
-                href="/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('home_link')}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('about_link')}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/counter/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('counter_link')}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/portfolio/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('portfolio_link')}
-              </Link>
-            </li>
-            <li>
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
-            </li>
-          </>
-        )}
-        rightNav={(
-          <>
-            <li>
-              <Link
-                href="/sign-in/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('sign_in_link')}
-              </Link>
-            </li>
+    <html lang="en">
+      <head>
+        <Script
+          src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
+          strategy="beforeInteractive"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height"
+        />
 
-            <li>
-              <Link
-                href="/sign-up/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('sign_up_link')}
-              </Link>
-            </li>
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5XVWCWWH');
+            `,
+          }}
+        />
+      </head>
 
-            <li>
-              <LocaleSwitcher />
-            </li>
-          </>
-        )}
-      >
-        <div className="py-5 text-xl [&_p]:my-6">{props.children}</div>
-      </BaseTemplate>
-    </>
+      <body className={`${soleil.variable} antialiased`}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5XVWCWWH"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            sandbox="allow-scripts"
+            title="Google Tag Manager"
+          >
+          </iframe>
+        </noscript>
+
+        {!isAuthPage && (isFaqPage ? <FaqHeader /> : <Header />)}
+
+        <div
+          className={`flex min-h-screen flex-col ${
+            !isCustomerStoriesPage && !isRedirectPage ? 'bg-[#fcfcfd]' : ''
+          }`}
+        >
+          <div
+            className={`grow ${
+              !isCustomerStoriesPage && !isRedirectPage ? 'pb-40' : ''
+            }`}
+          >
+            {children}
+          </div>
+          <ToastContainer />
+        </div>
+
+        {!isAuthPage && (isFaqPage ? <FaqFooter /> : <Footer />)}
+
+        <ToastContainer />
+      </body>
+    </html>
   );
 }
