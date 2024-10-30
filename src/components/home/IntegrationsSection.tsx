@@ -346,32 +346,33 @@ const IntegrationSection = () => {
           </div>
         </div>
       </div>
-      <style jsx>
+      <style>
         {`
-          @keyframes rippleAnimation {
-            0% {
-              opacity: 0;
-              transform: scale(0.8);
-            }
-            100% {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-          .ripple {
-            animation: rippleAnimation 1s forwards;
-          }
-          .ripple1 {
-            animation-delay: 0s;
-          }
-          .ripple2 {
-            animation-delay: 0.3s;
-          }
-          .ripple3 {
-            animation-delay: 0.6s;
-          }
-        `}
+    @keyframes rippleAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .ripple {
+      animation: rippleAnimation 1s forwards;
+    }
+    .ripple1 {
+      animation-delay: 0s;
+    }
+    .ripple2 {
+      animation-delay: 0.3s;
+    }
+    .ripple3 {
+      animation-delay: 0.6s;
+    }
+  `}
       </style>
+
     </>
   );
 };
