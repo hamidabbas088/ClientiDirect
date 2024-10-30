@@ -53,51 +53,39 @@ export default function RootLayout({
   const [isFaqPage, setIsFaqPage] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-
   useEffect(() => {
-    // Only set Promise polyfill if window is defined
-    if (typeof window !== 'undefined' && !window.Promise) {
+    if (!window.Promise) {
       window.Promise = Promise;
     }
-
-    // Only set MutationObserver if document is available
-    if (typeof document !== 'undefined') {
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          // eslint-disable-next-line no-console
-          console.log(mutation);
-        });
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        // eslint-disable-next-line no-console
+        console.log(mutation);
       });
+    });
 
-      const targetNode = document.getElementById('some-element');
-      if (targetNode) {
-        observer.observe(targetNode, {
-          attributes: true,
-          childList: true,
-          subtree: true,
-        });
-      }
-
-      // Return cleanup function to disconnect observer when component unmounts
-      return () => observer.disconnect();
+    const targetNode = document.getElementById('some-element');
+    if (targetNode) {
+      observer.observe(targetNode, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
     }
 
-    // Explicitly return undefined if MutationObserver is not created
-    return undefined;
+    return () => observer.disconnect();
   }, []);
 
-  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/register';
+  const isAuthPage
+    = pathname === '/auth/login' || pathname === '/auth/register';
   const isCustomerStoriesPage = pathname === '/customer-stories';
   const isRedirectPage = pathname === '/redirect';
 
   useEffect(() => {
-    // Access localStorage only on the client side
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token');
 
-      if (token && isAuthPage) {
-        router.push('/');
-      }
+    if (token && isAuthPage) {
+      router.push('/');
     }
   }, [isAuthPage, router]);
 
