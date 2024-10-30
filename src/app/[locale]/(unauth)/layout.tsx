@@ -7,6 +7,7 @@ import 'mutationobserver-shim';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../../styles/globals.css';
 
+import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
 import { usePathname, useRouter } from 'next/navigation';
 import Script from 'next/script';
@@ -14,10 +15,10 @@ import Promise from 'promise-polyfill';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import FaqFooter from '@/components/common/FaqFooter';
-import FaqHeader from '@/components/common/FaqHeader';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
+const FaqFooter = dynamic(() => import('@/components/common/FaqFooter'), { ssr: false });
+const FaqHeader = dynamic(() => import('@/components/common/FaqHeader'), { ssr: false });
+const Footer = dynamic(() => import('@/components/common/Footer'), { ssr: false });
+const Header = dynamic(() => import('@/components/common/Header'), { ssr: false });
 
 const soleil = localFont({
   src: [
@@ -53,51 +54,30 @@ export default function RootLayout({
   const [isFaqPage, setIsFaqPage] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
   useEffect(() => {
-    if (!window.Promise) {
+    // Only set Promise polyfill if not present
+    if (!Promise) {
       window.Promise = Promise;
     }
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // eslint-disable-next-line no-console
-        console.log(mutation);
-      });
-    });
-
-    const targetNode = document.getElementById('some-element');
-    if (targetNode) {
-      observer.observe(targetNode, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    return () => observer.disconnect();
   }, []);
   useEffect(() => {
     if (typeof window !== 'undefined') { /* empty */ }
   }, []);
 
-  const isAuthPage
-    = pathname === '/auth/login' || pathname === '/auth/register';
+  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/register';
   const isCustomerStoriesPage = pathname === '/customer-stories';
   const isRedirectPage = pathname === '/redirect';
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-
+    const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
     if (token && isAuthPage) {
       router.push('/');
     }
   }, [isAuthPage, router]);
 
   useEffect(() => {
-    if (pathname === '/faq' || pathname.startsWith('/articles/')) {
-      setIsFaqPage(true);
-    } else {
-      setIsFaqPage(false);
-    }
+    setIsFaqPage(pathname === '/faq' || pathname.startsWith('/articles/'));
   }, [pathname]);
 
   return (
