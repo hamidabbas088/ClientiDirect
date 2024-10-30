@@ -9,7 +9,6 @@ import '../../../styles/globals.css';
 import localFont from 'next/font/local';
 import { usePathname, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import Promise from 'promise-polyfill';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
@@ -52,31 +51,6 @@ export default function RootLayout({
   const [isFaqPage, setIsFaqPage] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  useEffect(() => {
-    if (!window.Promise) {
-      window.Promise = Promise;
-    }
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // eslint-disable-next-line no-console
-        console.log(mutation);
-      });
-    });
-
-    const targetNode = document.getElementById('some-element');
-    if (targetNode) {
-      observer.observe(targetNode, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    if (typeof window !== 'undefined') { /* empty */ }
-  }, []);
 
   const isAuthPage
     = pathname === '/auth/login' || pathname === '/auth/register';
