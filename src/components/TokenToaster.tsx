@@ -18,9 +18,6 @@ export default function TokenToaster() {
           position: 'top-right',
         },
       );
-
-      const newUrl = window.location.pathname;
-      window.history.replaceState(null, '', newUrl);
     }
   }, [token]);
 
