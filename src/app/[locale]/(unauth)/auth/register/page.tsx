@@ -215,10 +215,11 @@ function SignupForm() {
           'Content-Type': 'application/json',
         },
       });
+
       if (response.ok) {
         const data = await response.json();
         if (data.authorization_url) {
-          router.push(data.authorization_url); // Use router.push to navigate
+          window.location.href = data.authorization_url;
         } else {
           console.error('Authorization URL not found in the response');
           toast.error('Google sign-up URL missing', {
@@ -257,6 +258,7 @@ function SignupForm() {
       });
     }
   };
+
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-center">
       <ToastContainer />

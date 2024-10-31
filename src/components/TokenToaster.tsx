@@ -2,14 +2,12 @@
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function TokenToaster() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
   const token = searchParams.get('access_token');
 
   useEffect(() => {
@@ -21,10 +19,10 @@ export default function TokenToaster() {
         },
       );
 
-      // Replace the URL without the query string
-      router.replace(pathname);
+      const newUrl = window.location.pathname;
+      window.history.replaceState(null, '', newUrl);
     }
-  }, [token, router, pathname]);
+  }, [token]);
 
   return <ToastContainer />;
 }
