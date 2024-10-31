@@ -204,9 +204,6 @@ function SignupForm() {
   };
 
   const handleGoogleSignUp = async () => {
-    if (typeof window === 'undefined') {
-      return;
-    }
     const redirectUrl = 'https://clientidirect.com/confirmation';
     const googleAuthUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login/google?user_type=tenant&language=de&redirect_url=${encodeURIComponent(
       redirectUrl,
@@ -218,11 +215,10 @@ function SignupForm() {
           'Content-Type': 'application/json',
         },
       });
-
       if (response.ok) {
         const data = await response.json();
         if (data.authorization_url) {
-          window.location.href = data.authorization_url;
+          router.push(data.authorization_url); // Use router.push to navigate
         } else {
           console.error('Authorization URL not found in the response');
           toast.error('Google sign-up URL missing', {
@@ -261,7 +257,6 @@ function SignupForm() {
       });
     }
   };
-
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-center">
       <ToastContainer />

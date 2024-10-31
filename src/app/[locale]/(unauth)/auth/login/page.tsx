@@ -100,43 +100,34 @@ function LoginContent() {
   };
 
   const handleGoogleLogin = async () => {
-    if (typeof window === 'undefined') {
-      return;
-    }
     setGoogleLoading(true);
-
     try {
       const redirectUrl = 'https://clientidirect.com';
       const googleAuthUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login/google?user_type=tenant&language=de&redirect_url=${encodeURIComponent(
         redirectUrl,
       )}`;
-
       const response = await fetch(googleAuthUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
       if (response.ok) {
         const data = await response.json();
-
         if (data.authorization_url) {
-          window.location.href = data.authorization_url;
+          router.push(data.authorization_url); // Use router.push for internal navigation
         } else {
           throw new Error('Authorization URL not found');
         }
       } else {
         const errorData = await response.json();
-        throw new Error(
-          errorData.message || 'Failed to fetch Google login URL',
-        );
+        throw new Error(errorData.message || 'Failed to fetch Google login URL');
       }
-    } catch (err: unknown) {
+    } catch (err) {
       if (err instanceof Error) {
-        toast.error(err.message); // Error toast
+        toast.error(err.message);
       } else {
-        toast.error('Something went wrong'); // General error toast
+        toast.error('Something went wrong');
       }
     } finally {
       setGoogleLoading(false);

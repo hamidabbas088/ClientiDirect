@@ -9,7 +9,6 @@ import '../../../styles/globals.css';
 import localFont from 'next/font/local';
 import { usePathname, useRouter } from 'next/navigation';
 import Script from 'next/script';
-import Promise from 'promise-polyfill';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
@@ -20,26 +19,10 @@ import Header from '@/components/common/Header';
 
 const soleil = localFont({
   src: [
-    {
-      path: '../../../assets/fonts/SoleilBold.otf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../../assets/fonts/SoleilBook.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../../assets/fonts/SoleilLight.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../../assets/fonts/SoleilRegular.otf',
-      weight: '500',
-      style: 'normal',
-    },
+    { path: '../../../assets/fonts/SoleilBold.otf', weight: '700', style: 'normal' },
+    { path: '../../../assets/fonts/SoleilBook.otf', weight: '400', style: 'normal' },
+    { path: '../../../assets/fonts/SoleilLight.otf', weight: '300', style: 'normal' },
+    { path: '../../../assets/fonts/SoleilRegular.otf', weight: '500', style: 'normal' },
   ],
   variable: '--font-soleil',
 });
@@ -52,65 +35,29 @@ export default function RootLayout({
   const [isFaqPage, setIsFaqPage] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  useEffect(() => {
-    if (!window.Promise) {
-      window.Promise = Promise;
-    }
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // eslint-disable-next-line no-console
-        console.log(mutation);
-      });
-    });
 
-    const targetNode = document.getElementById('some-element');
-    if (targetNode) {
-      observer.observe(targetNode, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    return () => observer.disconnect();
-  }, []);
-  useEffect(() => {
-    if (typeof window !== 'undefined') { /* empty */ }
-  }, []);
-
-  const isAuthPage
-    = pathname === '/auth/login' || pathname === '/auth/register';
+  const isAuthPage = pathname === '/auth/login' || pathname === '/auth/register';
   const isCustomerStoriesPage = pathname === '/customer-stories';
   const isRedirectPage = pathname === '/redirect';
 
+  // Check for authentication token without using `window`
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-
+    const token = typeof document !== 'undefined' && document.cookie.includes('access_token');
     if (token && isAuthPage) {
       router.push('/');
     }
   }, [isAuthPage, router]);
 
+  // Determine if the current page is an FAQ page
   useEffect(() => {
-    if (pathname === '/faq' || pathname.startsWith('/articles/')) {
-      setIsFaqPage(true);
-    } else {
-      setIsFaqPage(false);
-    }
+    setIsFaqPage(pathname === '/faq' || pathname.startsWith('/articles/'));
   }, [pathname]);
 
   return (
     <html lang="en">
       <head>
-        <Script
-          src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
-          strategy="beforeInteractive"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height"
-        />
-
+        <Script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver" strategy="beforeInteractive" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height" />
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -135,22 +82,13 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
             sandbox="allow-scripts"
             title="Google Tag Manager"
-          >
-          </iframe>
+          />
         </noscript>
 
         {!isAuthPage && (isFaqPage ? <FaqHeader /> : <Header />)}
 
-        <div
-          className={`flex min-h-screen flex-col ${
-            !isCustomerStoriesPage && !isRedirectPage ? 'bg-[#fcfcfd]' : ''
-          }`}
-        >
-          <div
-            className={`grow ${
-              !isCustomerStoriesPage && !isRedirectPage ? 'pb-40' : ''
-            }`}
-          >
+        <div className={`flex min-h-screen flex-col ${!isCustomerStoriesPage && !isRedirectPage ? 'bg-[#fcfcfd]' : ''}`}>
+          <div className={`grow ${!isCustomerStoriesPage && !isRedirectPage ? 'pb-40' : ''}`}>
             {children}
           </div>
           <ToastContainer />
