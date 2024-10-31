@@ -11,13 +11,16 @@ export default function TokenToaster() {
   const token = searchParams.get('access_token');
 
   useEffect(() => {
-    if (token) {
+    if (typeof window !== 'undefined' && token) {
       toast.success(
         `Access token detected: You have successfully logged in through Google`,
         {
           position: 'top-right',
         },
       );
+
+      const newUrl = window.location.pathname;
+      window.history.replaceState(null, '', newUrl);
     }
   }, [token]);
 

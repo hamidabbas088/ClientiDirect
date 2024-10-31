@@ -9,6 +9,7 @@ import '../../../styles/globals.css';
 import localFont from 'next/font/local';
 import { usePathname, useRouter } from 'next/navigation';
 import Script from 'next/script';
+import Promise from 'promise-polyfill';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
@@ -52,6 +53,9 @@ export default function RootLayout({
   const pathname = usePathname();
   const router = useRouter();
   useEffect(() => {
+    if (!window.Promise) {
+      window.Promise = Promise;
+    }
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         // eslint-disable-next-line no-console
@@ -69,6 +73,9 @@ export default function RootLayout({
     }
 
     return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') { /* empty */ }
   }, []);
 
   const isAuthPage

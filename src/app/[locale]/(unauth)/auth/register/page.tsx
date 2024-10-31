@@ -204,6 +204,9 @@ function SignupForm() {
   };
 
   const handleGoogleSignUp = async () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const redirectUrl = 'https://clientidirect.com/confirmation';
     const googleAuthUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/login/google?user_type=tenant&language=de&redirect_url=${encodeURIComponent(
       redirectUrl,

@@ -100,6 +100,9 @@ function LoginContent() {
   };
 
   const handleGoogleLogin = async () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     setGoogleLoading(true);
 
     try {
